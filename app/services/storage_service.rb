@@ -1,8 +1,11 @@
+# frozen_string_literal: true
+
 class StorageService
   attr_accessor :config
 
   def initialize
     @config = config_keys.to_h { |key| [key, service_config[key]] }
+    valid?
   end
 
   def valid?

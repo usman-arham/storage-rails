@@ -1,19 +1,23 @@
-class StorageServices::Local < StorageService
-  def valid?
-    @config.values.none?(&:blank?)
-  end
+# frozen_string_literal: true
 
-  def save(id, data)
-    File.write(@config[:path]+"/"+id+".txt", data)
-  end
+module StorageServices
+  class Local < StorageService
+    def valid?
+      @config.values.none?(&:blank?)
+    end
 
-  def read(id)
-    File.read(@config[:path]+"/"+id+".txt")
-  end
-  private
+    def save(id, data)
+      File.write("#{@config[:path]}/#{id}.txt", data)
+    end
 
-  def config_keys
-    %i[path]
+    def read(id)
+      File.read("#{@config[:path]}/#{id}.txt")
+    end
+
+    private
+
+    def config_keys
+      %i[path]
+    end
   end
 end
-

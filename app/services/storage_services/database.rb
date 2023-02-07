@@ -1,21 +1,25 @@
-class StorageServices::Database < StorageService
-  def valid?
-    true
-  end
+# frozen_string_literal: true
 
-  def save(id, data)
-    attachment = Attachment.find_or_initialize_by(id: id)
-    attachment.update!(data: data)
-  end
+module StorageServices
+  class Database < StorageService
+    def valid?
+      true
+    end
 
-  def read(id)
-    attachment = Attachment.find(id)
-    return attachment[:data]
-  end
-  private
+    def save(id, data)
+      attachment = Attachment.find_or_initialize_by(id:)
+      attachment.update!(data:)
+    end
 
-  def config_keys
-    %i[]
+    def read(id)
+      attachment = Attachment.find(id)
+      attachment[:data]
+    end
+
+    private
+
+    def config_keys
+      %i[]
+    end
   end
 end
-
